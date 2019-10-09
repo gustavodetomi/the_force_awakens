@@ -1,5 +1,9 @@
 #include "header.h"
 
+/* 
+    FUNCOES NAO TERMINADAS, PARA AVALIAR O MELHOR CAMINHO
+*/
+
 /*
  - @return bool - RETORNA VERDADEIRO SE O PLANETA PERTECER 
  - @param Planeta planetas[]: TODOS OS PLANETAS QUE PERTECEM A INSTANCIA
@@ -43,25 +47,54 @@ void calcula_valor_caminho(Instancia instancias[],int planetas_ids[],int n_plane
     return;
 }   
 
-/*
-    - @return void
-    - @param Instancia instancia[]: TODAS AS INSTANCIAS CARREGADAS
-    - @param Int id_instancia: INSTANCIA QUE SERÁ USADA PARA EXECUTAR A FORCA BRUTA
+/* 
+    BUSCA RECURSIVA -------------
 */
-void busca_forca_bruta(Instancia instancias[],int id_instancia){
-    Solucao solucao;
-    solucao.id_instancia = id_instancia;
-    solucao.n_caminhos = 0;
-    int planetas[2] = {2,3};
-    calcula_valor_caminho(instancias,planetas,2,0);
+
+
+/*
+ - FUNCAO AUXILIAR RECURSIVA PARA GERAR TODAS AS COMBINACOES POSSIVEIS DE PLANETAS SELECIONADOS
+ - @return void
+ - @param int n_planetas: NUMERO DE PLANETAS
+ - @param int n_selecionados: NUMERO DE PLANETAS ESCOLHIDOS
+ - @param int vetor_indices[]: VETOR AUXILIAR PARA SALVAR OS INDICES
+ - @param int proximo: AUXILIAR PARA RECURSÃO
+ - @param int k: AUXILIAR PARA RECURSÃO
+ */
+void forca_bruta_recursiva(int n_planetas, int n_selecionados, int vetor_indices[], int proximo, int k) {
+    int i;
+    if (k != n_selecionados) { // "CHAMA ATÉ O INDICE SER IGUAL A K"
+        for (i = proximo; i < n_planetas; i++) {
+            vetor_indices[k] = i;
+            forca_bruta_recursiva(n_planetas, n_selecionados, vetor_indices, i + 1, k + 1);
+        }
+    } else { // IMPRIME O VETOR CONTENDO OS INDICES
+        for (i = 0; i < n_selecionados; i++){
+            printf("%i ", vetor_indices[i] + 1); // +1 PARA NAO CONTAR COM O ZERO
+        }
+        printf("\n");
+    }
 }
+
+
+/*
+ - FUNCAO PRINCIPAL DA FORCA BRUTA, GERA TODAS AS COMBINACOES DE PLANETAS ESCOLHIDOS
+ - @return void
+ - @param int n_planetas: NUMERO DE PLANETAS
+ - @param int n_selecionados: NUMERO DE PLANETAS ESCOLHIDOS
+ */
+void forca_bruta(int n_planetas, int n_selecionados){
+   int vetor[n_selecionados];
+   forca_bruta_recursiva(n_planetas, n_selecionados, vetor, 0, 0);
+}
+
 
 int main(){
     Instancia instancias[N_INSTANCIAS];
     inicializar_instancias(instancias);
     int num_instancias = leitura_arquivo(instancias);
-   /// imprime_instancia(instancias,num_instancias);
-   // imprime_instancia_log(instancias,num_instancias);
-    busca_forca_bruta(instancias,0);
+    imprime_instancia(instancias,num_instancias);
+    imprime_instancia_log(instancias,num_instancias);
+    forca_bruta(3,2);
     return 0;
 }
