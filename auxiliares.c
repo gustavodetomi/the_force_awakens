@@ -1,5 +1,10 @@
 #include "header.h"
 
+/*
+ - INICIALIZA OS VALORES DAS INSTANCIAS
+ - @return void
+ - @param Instancia instancias[]: VETOR CONTENDO AS INSTANCIAS
+ */
 void inicializar_instancias(Instancia instancias[]){
     for(int i = 0; i < N_INSTANCIAS; i++){
         instancias[i].id = -1;
@@ -15,20 +20,34 @@ void inicializar_instancias(Instancia instancias[]){
     }
 }
 
+/*
+ - IMPRIME UM REGISTRO DO TIPO Planeta
+ - @return void
+ - @param Planeta planeta: REGISTRO DO TIPO PLANETA
+ */
 void imprime_planeta(Planeta planeta){
     printf("Planeta id: %i\n",planeta.id);
     printf("Selecionado: %i\n",planeta.selecionado);
     printf("Distancia: %i\n",planeta.distancia);
-    
 }
+
+/*
+ - IMPRIME UM REGISTRO DO TIPO Aresta
+ - @return void
+ - @param Aresta aresta: REGISTRO DO TIPO Aresta
+ */
 void imprime_aresta(Aresta aresta){
     printf("Aresta id: %i\n",aresta.id);
     printf("id planeta inicial: %i\n",aresta.id_planeta_inicial);
     printf("id do planeta final: %i\n",aresta.id_planeta_final);
     printf("Distancia entre as arestas: %i\n",aresta.distancia);
-
 }
 
+/*
+ - IMPRIME UM REGISTRO DO TIPO Caminho
+ - @return void
+ - @param Caminho caminho: REGISTRO DO TIPO Caminho
+ */
 void imprime_caminho(Caminho caminho){
     printf("id=%i\n",caminho.id);
     for(int i = 0; i < caminho.n_arestas; i++){
@@ -42,6 +61,11 @@ void imprime_caminho(Caminho caminho){
     printf("float=%f\n",caminho.fitnes);
 }
 
+/*
+ - IMPRIME UM REGISTRO DO TIPO Solucao
+ - @return void
+ - @param Solucao solucao: REGISTRO DO TIPO Solucao
+ */
 void imprime_solucao(Solucao solucao){
     printf("id da instancia: %i\n",solucao.id_instancia);
     printf("id do melhor caminho: %i\n",solucao.id_melhor_caminho);
@@ -51,7 +75,12 @@ void imprime_solucao(Solucao solucao){
     }
 }
 
-void imprime__instancia(Instancia instancia){
+/*
+ - IMPRIME UM REGISTRO DO TIPO Instancia
+ - @return void
+ - @param Instancia instancia: REGISTRO DO TIPO Instancia
+ */
+void imprime_instancia(Instancia instancia){
     printf("id da instacia: %i\n",instancia.id);
     printf("numero de planetas: %i\n",instancia.n_planetas);
     printf("numero de arestas: %i\n",instancia.n_arestas);
@@ -60,10 +89,15 @@ void imprime__instancia(Instancia instancia){
     for(int i = 0; i < instancia.n_planetas; i++){
         imprime_planeta(instancia.planetas[i]);
     }
-
 }
 
-void imprime_instancia1(Instancia instancias[], int num_instancias){
+/*
+ - IMPRIME AS INSTANCIAS CARREGADAS NO FORMATO DA ENTRADA PELO ARQUIVO
+ - @return void
+ - @param Instancia instancias[]: VETOR DE REGISTROS DO TIPO Instancia
+ - @param int num_instancias: NUMERO DE INSTANCIAS PRESENTES DO VETOR instancias[]
+ */
+void imprime_instancias_formato_entrada(Instancia instancias[], int num_instancias){
     printf("%i\n",num_instancias);
     for(int i = 0; i < num_instancias; i++){
         printf("%i %i\n",instancias[i].n_planetas,instancias[i].n_conquistas);
@@ -71,16 +105,4 @@ void imprime_instancia1(Instancia instancias[], int num_instancias){
             printf("%i\n",instancias[i].planetas[j].distancia);
         }
     }
-}
-
-void imprime_instancia_log(Instancia instancias[], int num_instancias){
-    printf("\nlog\n");
-    printf("n_instancias %i\n",num_instancias);
-    for(int i = 0; i < num_instancias; i++){
-        printf("\n\nInstancia{ \n   id=%i \n   n_planetas=%i \n   n_conquistas=%i\n   n_arestas=%i\n   distancia_total=%i\n",instancias[i].id,instancias[i].n_planetas,instancias[i].n_conquistas,instancias[i].n_arestas,instancias[i].distancia_total);
-        for(int j = 0; j < instancias[i].n_planetas+1; j++){
-            printf("\n\n  Planeta{ \n      id=%i \n      distancia=%i\n     selecionado=%i\n    }",instancias[i].planetas[j].id,instancias[i].planetas[j].distancia,instancias[i].planetas[j].selecionado);
-        }
-    }
-    printf("\n}\n");
 }

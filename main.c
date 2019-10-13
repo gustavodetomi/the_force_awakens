@@ -12,7 +12,6 @@
  */
 bool esta_selecionado(Planeta planetas[],int n_planetas,int id_planeta){
     for(int i=0;i<n_planetas+1;i++){
-        printf("\nid=%i busca=%i",planetas[i].id,id_planeta);
         if(planetas[i].id == id_planeta){
             return true;
         }
@@ -32,16 +31,15 @@ void calcula_valor_caminho(Instancia instancias[],int planetas_ids[],int n_plane
     Aresta aresta_aux;
     float media; // DISTANCIA TOTAL DIVIDO PELO NUMERO DE CONEXOES A SEREM FEITAS
     media = ((float)instancias[id_instancia].distancia_total / (float)(instancias[id_instancia].n_conquistas+1));
-    //printf("\ndistancia=%i n_conquistas+1=%i media =%f\n",instancias[id_instancia].distancia_total,instancias[id_instancia].n_conquistas+1,media); 
     for(int i=0;i<n_planetas_selecionados;i++){
         caminho.planeta[i] = instancias[id_instancia].planetas[planetas_ids[i]];
     }
-
+    imprime_caminho(caminho);
     caminho.n_planetas = n_planetas_selecionados;
     int distancia_percorrida = 0;
     for(int i=0;i<instancias[id_instancia].n_arestas;i++){
         if(esta_selecionado(caminho.planeta,instancias[id_instancia].n_planetas,i)){
-            printf("\nPlaneta_selecionado=%i\n",i);
+            printf("Planeta_selecionado=%i\n",i);
         }
     }
     return;
@@ -50,7 +48,6 @@ void calcula_valor_caminho(Instancia instancias[],int planetas_ids[],int n_plane
 /* 
     BUSCA RECURSIVA -------------
 */
-
 
 /*
  - FUNCAO AUXILIAR RECURSIVA PARA GERAR TODAS AS COMBINACOES POSSIVEIS DE PLANETAS SELECIONADOS
@@ -76,7 +73,6 @@ void forca_bruta_recursiva(int n_planetas, int n_selecionados, int vetor_indices
     }
 }
 
-
 /*
  - FUNCAO PRINCIPAL DA FORCA BRUTA, GERA TODAS AS COMBINACOES DE PLANETAS ESCOLHIDOS
  - @return void
@@ -88,13 +84,13 @@ void forca_bruta(int n_planetas, int n_selecionados){
    forca_bruta_recursiva(n_planetas, n_selecionados, vetor, 0, 0);
 }
 
-
 int main(){
     Instancia instancias[N_INSTANCIAS];
     inicializar_instancias(instancias);
     int num_instancias = leitura_arquivo(instancias);
-    imprime_instancia(instancias,num_instancias);
-    imprime_instancia_log(instancias,num_instancias);
-    forca_bruta(3,2);
+   // imprime_instancias_formato_entrada(instancias,num_instancias);
+    forca_bruta(5,3);
+    int vetor[2] = {0,2};
+    calcula_valor_caminho(instancias,vetor,2,0);
     return 0;
 }

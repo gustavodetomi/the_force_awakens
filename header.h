@@ -13,7 +13,10 @@
 #define N_INSTANCIAS 100 
 #define N_CONQUISTAS 250
 
-// STRUCTS ENTRADA DE DADOS
+/*
+   MODULARIZACAO DOS REGISTROS DE ENTRADA PELO ARQUIVO DE TEXTO
+*/
+
 typedef struct Planeta{
     int id;
     bool selecionado;
@@ -29,7 +32,10 @@ typedef struct Instancia{
     Planeta planetas[N_PLANETAS];
 }Instancia;
 
-// STRUCTS AUXLIARES PARA OS ALGORITMOS
+/*
+   MODULARIZACAO DOS REGISTROS USADOS NA SOLUCAO
+*/
+
 typedef struct Aresta{
     int id;
     int id_planeta_inicial;
@@ -43,7 +49,7 @@ typedef struct Caminho{
     Planeta planeta[N_PLANETAS];
     int n_planetas;
     int n_arestas;
-    float fitnes; // O QUANTO O CAMINHO É BOM, QUANTO MENOR MELHORplanetaplanetaplaneta
+    float fitnes; // O QUANTO O CAMINHO É BOM, QUANTO MENOR MELHOR
 }Caminho;
 
 typedef struct Solucao{
@@ -53,16 +59,32 @@ typedef struct Solucao{
     Caminho caminhos[N_CONQUISTAS];
 }Solucao;
 
-// LENDO O ARQUIVO CONTENDO AS INFORMACOES DE ENTRADA
+/*
+    FUNCOES leitura_arquivo.c
+*/
+
 int leitura_arquivo(Instancia instancias[]);
 
-// INCIALIZA OS VETORES CONTENDO AS INSTANICIAS E OS PLANETAS
+/*
+   FUNCOES auxiliares.C
+*/
+
 void inicializar_instancias(Instancia instancias[]);
 
-// FUNCAO AUXILIAR PARA IMPRIMIR A ENTRADA DO ARQUIVO
-void imprime_instancia(Instancia instancias[], int num_instancias);
+/*
+--- FUNCOES AUXILIARES PARA PARA LOG
+*/
 
-// FUNÇÃO AUXILIAR PARA IMPRIMIR NO FORMATO DA STRUCT
-void imprime_instancia_log(Instancia instancias[], int num_instancias);
+void imprime_planeta(Planeta planeta);
+
+void imprime_aresta(Aresta aresta);
+
+void imprime_caminho(Caminho caminho);
+
+void imprime_solucao(Solucao solucao);
+
+void imprime_instancia(Instancia instancias);
+
+void imprime_instancias_formato_entrada(Instancia instancias[], int num_instancias);
 
 #endif //__HEADER

@@ -1,5 +1,15 @@
 #include "header.h"
 
+/*
+ - FUNCAO LE O ARQUIVO DE ENTRADA E CARREGA AS INFORMACOES DE ENTRADA
+   LINHA 1 - PRIMEIRO INTEIRO = NUMERO DE INSTANCIAS
+   LINHA 2 - PRIMEIRO INTEIRO = NUMERO DE PLANETAS
+   LINHA 2 - SEGUNDO INTEIRO = NUMERO DE CONQUISTAS
+   LINHAS * - PESO DA DISTANCIA DA ARESTA DOS PLANETAS
+   REPETE ATE ACABAR AS IN
+ - @return int - RETORNA O NUMERO DE INSTANCIAS
+ - @param Instancia[]: VETOR A SER CARREGADO COM A ENTRADA
+ */
 int leitura_arquivo(Instancia instancias[]){
     int num_instancias = -1;
     //LEITURA ATRAVÉS DO ARQUIVO
@@ -20,6 +30,5 @@ int leitura_arquivo(Instancia instancias[]){
         }
     }
     return num_instancias;
-    //while(!feof(arquivo)){ }
 }
 
