@@ -83,7 +83,7 @@ void imprime_caminho(Caminho caminho);
 
 void imprime_solucao(Solucao solucao);
 
-void imprime_instancia(Instancia instancias);
+void imprime_instancia(Instancia instancia);
 
 void imprime_instancias_formato_entrada(Instancia instancias[], int num_instancias);
 
