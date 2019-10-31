@@ -21,6 +21,7 @@ typedef struct Planeta{
     int id;
     bool selecionado;
     int distancia;
+    float fitnes; // USADO NA SOLUCAO GULOSA
 }Planeta;
 
 typedef struct Instancia{
@@ -49,7 +50,8 @@ typedef struct Caminho{
     Planeta planeta[N_PLANETAS];
     int n_planetas;
     int n_arestas;
-    float fitnes; // O QUANTO O CAMINHO É BOM, QUANTO MENOR MELHOR
+    int id_maior_aresta; 
+    int valor_maior_aresta; // PODE SER RECUPERADO TAMBEM PELO ID DA ARESTA
 }Caminho;
 
 typedef struct Solucao{
@@ -60,22 +62,28 @@ typedef struct Solucao{
 }Solucao;
 
 /*
-    FUNCOES leitura_arquivo.c
+--- FUNCOES OPERAÇÕES COM ARQUIVOS
+    leitura_arquivo.c
 */
 
 int leitura_arquivo(Instancia instancias[]);
 
 /*
-   FUNCOES auxiliares.C
+--- FUNCOES AUXILIARES PARA PARA LOG
+    auxiliares.C
 */
 
 void inicializar_instancias(Instancia instancias[]);
 
-/*
---- FUNCOES AUXILIARES PARA PARA LOG
-*/
+void inicializar_instancias(Instancia instancias[]);
 
-void imprime_planeta(Planeta planeta);
+void inicializa_planeta(Planeta *planeta);
+
+void inicializa_aresta(Aresta *aresta);
+
+void inicializa_caminho(Caminho *caminho);
+
+void imprime_caminho_formato_grafo(Caminho caminho);
 
 void imprime_aresta(Aresta aresta);
 
@@ -86,5 +94,38 @@ void imprime_solucao(Solucao solucao);
 void imprime_instancia(Instancia instancia);
 
 void imprime_instancias_formato_entrada(Instancia instancias[], int num_instancias);
+
+/*
+--- FUNCOES USADAS PARA CALCULAR O VALOR DO CAMINHO
+    DE ACORDO COM OS PLANETAS SELECIONADOS
+    - leitura_arquivo.c
+*/
+
+void copia_caminho(Caminho *caminho_recebe, Caminho *caminho_passa );
+
+bool esta_selecionado(Planeta planetas[],int n_planetas,int id_planeta);
+
+Caminho calcula_valor_caminho(Instancia instancias[],int planetas_ids[],int n_planetas_selecionados, int id_instancia);
+
+/*
+--- FUNCOES USADAS NO ALGORITMO DE FORCA BRUTA
+    - forca_bruta.c
+*/
+
+Caminho forca_bruta(Instancia instancias[], int id_intancia);
+
+void forca_bruta_recursiva(int n_planetas, int n_selecionados, int vetor_indices[], int proximo, int k,Instancia instancias[],int id_instancia,Caminho *caminho);
+
+void calcula_fc_instancias(Instancia instancias[], int n_instancias,int resultado_final[]);
+/*
+--- FUNCOES USADAS NO ALGORITMO GULOSO
+    - algorimo_guloso.c
+*/
+
+void ordena_planetas(Planeta Ordena[], int tamanho);
+
+Caminho algoritmo_guloso(Instancia instancias[], int id_instancia);
+
+void calcula_alg_guloso_instancias(Instancia instancias[], int n_instancias, int resultado_final[]);
 
 #endif //__HEADER

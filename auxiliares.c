@@ -21,6 +21,47 @@ void inicializar_instancias(Instancia instancias[]){
 }
 
 /*
+ - INICIALIZA OS VALORES DE UM PLANETA
+ - @return void
+ - @param Planeta *planeta: variável a ser inicilizada
+ */
+void inicializa_planeta(Planeta *planeta){
+    planeta->id = -1;
+    planeta->selecionado = false;
+    planeta->distancia = 0;
+}
+
+/*
+ - INICIALIZA OS VALORES DE UMA ARESTA  
+ - @return void
+ - @param Aresta *aresta: variavel a ser inicializada
+ */
+void inicializa_aresta(Aresta *aresta){
+    aresta->id = -1;
+    aresta->id_planeta_inicial = -1;
+    aresta->id_planeta_final = -1;
+    aresta->distancia = 0;
+}
+
+/*
+ - INICIALIZA OS VALORES DE UM CAMINHO
+ - @return void
+ - @param Caminho *caminho: variavel a ser inicializada
+ */
+void inicializa_caminho(Caminho *caminho){
+    caminho->id = -1;
+    for(int i=0; i<N_PLANETAS;i++){
+        inicializa_aresta(&caminho->arestas[i]);
+        inicializa_planeta(&caminho->planeta[i]);
+    }
+    caminho->n_planetas = 0;
+    caminho->n_arestas = 0;
+    caminho->id_maior_aresta = 0;
+    caminho->valor_maior_aresta = 9999999;
+}
+
+
+/*
  - IMPRIME UM REGISTRO DO TIPO Planeta
  - @return void
  - @param Planeta planeta: REGISTRO DO TIPO PLANETA
@@ -58,7 +99,25 @@ void imprime_caminho(Caminho caminho){
     }
     printf("n_planetas=%i\n",caminho.n_planetas);
     printf("n_arestas=%i\n",caminho.n_arestas);
-    printf("float=%f\n",caminho.fitnes);
+    printf("id_maior_aresta=%i\n",caminho.id_maior_aresta);
+    printf("valor_maior_aresta=%i\n",caminho.valor_maior_aresta);
+}
+
+void imprime_caminho_formato_grafo(Caminho caminho){
+    int i=0;
+    printf("Maior aresta: %i\n",caminho.valor_maior_aresta);
+    printf("Planetas selecionados: ");
+    for(int i=0;i<caminho.n_planetas;i++){
+        if(caminho.planeta[i].selecionado == true){
+            printf("%i ",caminho.planeta[i].id+1);
+        }
+    }
+    printf("\n");
+    printf("(P%i)",caminho.arestas[i].id_planeta_inicial);
+    for(i=0;i<caminho.n_arestas;i++){
+        printf("---[%i]--->(P%i)",caminho.arestas[i].distancia,caminho.arestas[i].id_planeta_final+1);
+    }
+    printf("\n");
 }
 
 /*
@@ -106,3 +165,5 @@ void imprime_instancias_formato_entrada(Instancia instancias[], int num_instanci
         }
     }
 }
+
+
