@@ -103,6 +103,11 @@ void imprime_caminho(Caminho caminho){
     printf("valor_maior_aresta=%i\n",caminho.valor_maior_aresta);
 }
 
+/*
+ - IMPRIME UM CAMINHO EM UM FORMATO MAIS VISUAL, QUE FACILITA O ENTENDIMENTO
+ - @return void
+ - @param Caminho caminho: STRUCT DO TIPO Caminho
+ */
 void imprime_caminho_formato_grafo(Caminho caminho){
     int i=0;
     printf("Maior aresta: %i\n",caminho.valor_maior_aresta);
@@ -118,20 +123,6 @@ void imprime_caminho_formato_grafo(Caminho caminho){
         printf("---[%i]--->(P%i)",caminho.arestas[i].distancia,caminho.arestas[i].id_planeta_final+1);
     }
     printf("\n");
-}
-
-/*
- - IMPRIME UM REGISTRO DO TIPO Solucao
- - @return void
- - @param Solucao solucao: REGISTRO DO TIPO Solucao
- */
-void imprime_solucao(Solucao solucao){
-    printf("id da instancia: %i\n",solucao.id_instancia);
-    printf("id do melhor caminho: %i\n",solucao.id_melhor_caminho);
-    printf("id numero de caminhos: %i\n",solucao.n_caminhos);
-    for(int i = 0; i < solucao.n_caminhos; i++){
-        imprime_caminho(solucao.caminhos[i]);
-    }
 }
 
 /*

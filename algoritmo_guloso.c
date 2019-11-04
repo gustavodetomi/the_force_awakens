@@ -1,6 +1,11 @@
 #include "header.h"
 
-
+/*
+ - ORDENA UM ARRAY DO TIPO PLANETA EM ORDEM CRESCENTE   
+ - @return void
+ - @param Planeta planeta[]: VETOR QUE CONTEM OS PLANETAS a serem ordenados
+ - @param int tamanho: NUMERO DE INSTANCIAS NOS ARRAY PLANETAS
+ */
 void ordena_planetas(Planeta Ordena[], int tamanho){
    int i, j;
    struct Planeta aux;
@@ -16,6 +21,16 @@ void ordena_planetas(Planeta Ordena[], int tamanho){
     }
 }
 
+
+/*
+ - REALIZA A APLICACAO DO ALGORITMO GULOSO
+   O ALGORITMO CALCULA A MEDIA DAS DISTANCIAS EM RELACAO AO NUMERO DE ARESTAS,
+   LOGO APOS SUBTRAI ESSA DISTANCIA PELO DE CADA ARESTA, LOGO APOS ESSE RESULTADO
+   OBTIDO E ORDENADO E POR FIM O ALGORITMO SELECIONA OS MENORES VALORES
+ - @return Caminho caminho - RETORNA UMA STRUCT DO TIPO CAMINHO
+ - @param Instancia instancias[]: VETOR DE REGISTROS DO TIPO Instancia
+ - @param int id_instancia: ID DA INSTANCIA QUE O ALGORITMO SERA APLICADO
+ */
 Caminho algoritmo_guloso(Instancia instancias[], int id_instancia){
     float soma_distancias = 0.0f;
     // CALCULA A MEDIA DAS DISTANCIA EM RELACAO AO NUMERO DE ARESTAS
@@ -53,6 +68,15 @@ Caminho algoritmo_guloso(Instancia instancias[], int id_instancia){
     return caminho;
 }
 
+/*
+ - APLICA O ALGORITMO GULOSO EM TODAS AS INTANCIAS PASSADAS POR REFERENCIA, E RETORNA O RESULTADO
+   ATRAVES DO PARAMETRO 'resultado_final[]'
+ - @return void
+ - @param Instancia instancias[]: VETOR DE REGISTROS DO TIPO Instancia
+ - @param int num_instancias: NUMERO DE INSTANCIAS PRESENTES DO VETOR instancias[]
+ - @param int resultado_final[]: PARAMETRO DE SAIDA, QUE CONTEM OS VALORES FINAIS
+   DAS MAIORES ARESTAS DE CADA PROBLEMA
+ */
 void calcula_alg_guloso_instancias(Instancia instancias[], int n_instancias,int resultado_final[]){
     for(int i=0; i<n_instancias;i++){
         printf("---------------------------\n");

@@ -4,12 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h> // BIBLIOTECA PARA UTILIZAR VERDADEIRO E FALSO PADRONIZADO
 
-#define bool int
-#define true 1
-#define false 0
-
-#define N_PLANETAS 502
+#define N_PLANETAS 500
 #define N_INSTANCIAS 100 
 #define N_CONQUISTAS 250
 
@@ -34,7 +31,7 @@ typedef struct Instancia{
 }Instancia;
 
 /*
-   MODULARIZACAO DOS REGISTROS USADOS NA SOLUCAO
+   MODULARIZACAO DOS REGISTROS USADOS NOS ALGORITMOS 
 */
 
 typedef struct Aresta{
@@ -53,13 +50,6 @@ typedef struct Caminho{
     int id_maior_aresta; 
     int valor_maior_aresta; // PODE SER RECUPERADO TAMBEM PELO ID DA ARESTA
 }Caminho;
-
-typedef struct Solucao{
-    int id_instancia;
-    int id_melhor_caminho;
-    int n_caminhos;
-    Caminho caminhos[N_CONQUISTAS];
-}Solucao;
 
 /*
 --- FUNCOES OPERAÇÕES COM ARQUIVOS
@@ -89,16 +79,14 @@ void imprime_aresta(Aresta aresta);
 
 void imprime_caminho(Caminho caminho);
 
-void imprime_solucao(Solucao solucao);
-
 void imprime_instancia(Instancia instancia);
 
 void imprime_instancias_formato_entrada(Instancia instancias[], int num_instancias);
 
 /*
---- FUNCOES USADAS PARA CALCULAR O VALOR DO CAMINHO
-    DE ACORDO COM OS PLANETAS SELECIONADOS
-    - leitura_arquivo.c
+--- FUNCOES USADAS PARA CALCULAR O VALOR DO CAMINHO DE ACORDO COM OS PLANETAS SELECIONADOS, 
+    FUNCOES PADRAO A SEREM UTILIZADAS NOS ALGORITMOS PARA OBTER O VALOR DO CAMINHO
+    - valor_caminho.c
 */
 
 void copia_caminho(Caminho *caminho_recebe, Caminho *caminho_passa );
