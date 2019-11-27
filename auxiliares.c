@@ -60,7 +60,6 @@ void inicializa_caminho(Caminho *caminho){
     caminho->valor_maior_aresta = 9999999;
 }
 
-
 /*
  - IMPRIME UM REGISTRO DO TIPO Planeta
  - @return void
@@ -148,13 +147,11 @@ void imprime_instancia(Instancia instancia){
  - @param int num_instancias: NUMERO DE INSTANCIAS PRESENTES DO VETOR instancias[]
  */
 void imprime_instancias_formato_entrada(Instancia instancias[], int num_instancias){
-    printf("%i\n",num_instancias);
+    printf(" %i\n",num_instancias);
     for(int i = 0; i < num_instancias; i++){
-        printf("%i %i\n",instancias[i].n_planetas,instancias[i].n_conquistas);
+        printf(" %i %i\n",instancias[i].n_planetas,instancias[i].n_conquistas);
         for(int j = 0; j < instancias[i].n_planetas+1; j++){
-            printf("%i\n",instancias[i].planetas[j].distancia);
+            printf(" %i\n",instancias[i].planetas[j].distancia);
         }
     }
 }
-
-

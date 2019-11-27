@@ -56,6 +56,7 @@ Caminho algoritmo_guloso(Instancia instancias[], int id_instancia){
 
     int cont = 0;
     int cont2 = 0;
+    // PEGA OS MENORES VALORES
     while(cont2 != instancias[id_instancia].n_conquistas){
         if(planetas[cont].id != 0){ // NÃO PODE SELECIONAR O "PLANETA" INICIAL
             solucao[cont2] = planetas[cont].id-1;

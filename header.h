@@ -65,8 +65,6 @@ int leitura_arquivo(Instancia instancias[]);
 
 void inicializar_instancias(Instancia instancias[]);
 
-void inicializar_instancias(Instancia instancias[]);
-
 void inicializa_planeta(Planeta *planeta);
 
 void inicializa_aresta(Aresta *aresta);
@@ -105,6 +103,7 @@ Caminho forca_bruta(Instancia instancias[], int id_intancia);
 void forca_bruta_recursiva(int n_planetas, int n_selecionados, int vetor_indices[], int proximo, int k,Instancia instancias[],int id_instancia,Caminho *caminho);
 
 void calcula_fc_instancias(Instancia instancias[], int n_instancias,int resultado_final[]);
+
 /*
 --- FUNCOES USADAS NO ALGORITMO GULOSO
     - algorimo_guloso.c
